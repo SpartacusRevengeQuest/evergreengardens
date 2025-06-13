@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evergreen Gardening - Your Green Thumb Experts</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary-color: #4CAF50;
+    --accent-color: #FFC107;
+    --dark-color: #222;
+    --light-bg: #f9f9f9;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-primary);
+    background-color: var(--light-bg);
+    color: var(--dark-color);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* Header */
+  header {
+    background-color: var(--dark-color);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    color: #fff;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 1em;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-primary);
+    font-size: 2.8em;
+    color: #fff;
+    max-width: 800px;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
+
+  /* Content container */
+  .container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+
+  /* Buttons */
+  .buttons {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    display: inline-block;
+    margin: 10px 20px;
+    padding: 14px 24px;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 1.1em;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #388E3C;
+    transform: scale(1.02);
+  }
+
+  /* Sections styling */
+  section {
+    background: #fff;
+    padding: 40px 30px;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  section:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-family: var(--font-primary);
+    font-size: 2em;
+    color: var(--dark-color);
+  }
+
+  /* Comments & Reviews */
+  #comments {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  #comments p {
+    background: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: background 0.3s;
+  }
+
+  #comments p:hover { background: #e0e0e0; }
+
+  /* Forms */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    padding: 14px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: var(--font-secondary);
+    font-size: 1em;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+
+  button {
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #388E3C;
+    transform: scale(1.02);
+  }
+
+  /* Responsive */
+  @media(max-width: 768px){
+    .hero h1 { font-size: 2em; }
+  }
+
+  /* Modal styling for About Us message */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    position: relative;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px; right: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+  }
+
+  .close-btn:hover {
+    color: #000;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div style="display:flex; justify-content: space-between; align-items:center; max-width:1200px; width:100%; margin:auto;">
+    <h1 style="color:#fff; font-family: var(--font-primary); font-size:1.5em;">Evergreen Gardening</h1>
+    <nav>
+      <a href="#" id="aboutBtn">About Us</a>
+      <a href="#" id="blogBtn">Blog</a>
+      <!-- Removed Review link -->
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Transform Your Garden Into a Paradise</h1>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+  <!-- Call-to-Action Buttons -->
+  <div class="buttons" style="text-align:center;">
+    <a href="#" id="aboutBtn2" class="btn">Learn About Us</a>
+    <a href="#commentsSection" class="btn">Share Your Thoughts</a>
+    <!-- Removed Review button -->
+  </div>
+
+  <!-- Services & Pricing -->
+  <section id="servicesSection">
+    <h2>Our Services & Pricing</h2>
+    <ul style="font-family: var(--font-secondary); font-size: 1.2em; line-height: 1.8; color: var(--dark-color); list-style: none; padding-left: 0;">
+      <li>🌿 Lawn Mowing: <strong>$7</strong></li>
+      <li>🌱 Weed Picking: <strong>$2</strong></li>
+      <li>💧 Watering: <strong>$4</strong></li>
+    </ul>
+  </section>
+
+  <!-- Comments -->
+  <section id="commentsSection">
+    <h2>Share Your Thoughts</h2>
+    <div id="comments"></div>
+    <form id="commentsForm">
+      <input type="text" placeholder="Your Name" id="nameInput" required />
+      <textarea rows="4" placeholder="Your comment..." id="commentInput" required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </section>
+
+  <!-- Removed Reviews Section -->
+
+</div>
+
+<!-- About Us Modal -->
+<div class="modal" id="aboutModal">
+  <div class="modal-content">
+    <div class="close-btn" id="closeModal">&times;</div>
+    <h1>🌱 Meet Your Young Gardeners! 🌼</h1>
+    <p>Hello! We're Sihas and Kritarth, two passionate 11-year-olds who love being outside and working with plants.</p>
+    <p>We want to help you take care of your garden! Whether it's watering plants, pulling weeds, or planting flowers, we're here to make your outdoor space beautiful.</p>
+    <p>Supporting young helpers like us means a lot, and we'd love to hear from you if you'd like some gardening help!</p>
+    <div class="names" style="margin-top:2em; font-weight:bold;">
+      – From your friendly neighborhood gardeners,<br>
+      Sihas, Kritarth, Karthik, & Charith!
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="background:#222; color:#ccc; padding:20px; text-align:center;">
+  <p>Contact: <a href="mailto:sihasja@gmail.com" style="color:#FFC107;">sihasja@gmail.com</a> | <a href="mailto:hellokritarth@gmail.com" style="color:#FFC107;">hellokritarth@gmail.com</a></p>
+  <p>&copy; 2024 Evergreen Gardening</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Comments array
+  const comments = [];
+
+  const commentsDiv = document.getElementById('comments');
+  const commentForm = document.getElementById('commentsForm');
+  const nameInput = document.getElementById('nameInput');
+  const commentInput = document.getElementById('commentInput');
+
+  // About Us modal
+  const aboutModal = document.getElementById('aboutModal');
+  const aboutBtn = document.getElementById('aboutBtn');
+  const aboutBtn2 = document.getElementById('aboutBtn2');
+  const closeModalBtn = document.getElementById('closeModal');
+
+  // Open modal
+  function openModal() {
+    aboutModal.style.display = 'flex';
+  }
+  // Close modal
+  function closeModal() {
+    aboutModal.style.display = 'none';
+  }
+
+  // Event listeners for "About Us" buttons
+  aboutBtn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+  aboutBtn2.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+  closeModalBtn.addEventListener('click', closeModal);
+  window.onclick = (e) => { if (e.target === aboutModal) closeModal(); };
+
+  // "Blog" button
+  document.getElementById('blogBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://www.blogger.com', '_blank');
+  });
+
+  // Add comment
+  commentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const comment = commentInput.value.trim();
+    if (name && comment) {
+      comments.push({name, comment});
+      displayComments();
+      commentForm.reset();
+    }
+  });
+
+  function displayComments() {
+    commentsDiv.innerHTML = '';
+    comments.forEach(c => {
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${c.name}:</strong> ${c.comment}`;
+      commentsDiv.appendChild(p);
+    });
+  }
+</script>
+</body>
+</html>
