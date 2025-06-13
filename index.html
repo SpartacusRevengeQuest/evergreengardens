@@ -138,8 +138,8 @@
     color: var(--dark-color);
   }
 
-  /* Comments & Reviews */
-  #comments, #reviews {
+  /* Comments */
+  #comments {
     max-height: 250px;
     overflow-y: auto;
     margin-bottom: 20px;
@@ -163,7 +163,6 @@
   }
 
   input[type="text"],
-  input[type="number"],
   textarea {
     padding: 14px;
     border: 2px solid #ccc;
@@ -174,7 +173,6 @@
   }
 
   input[type="text"]:focus,
-  input[type="number"]:focus,
   textarea:focus {
     border-color: var(--primary-color);
     outline: none;
@@ -196,14 +194,6 @@
   button:hover {
     background-color: #388E3C;
     transform: scale(1.02);
-  }
-
-  /* Overall Review */
-  #overallReview {
-    font-size: 1.4em;
-    font-weight: bold;
-    margin-top: 15px;
-    color: #333;
   }
 
   /* Responsive */
@@ -257,7 +247,7 @@
     <nav>
       <a href="#" id="aboutBtn">About Us</a>
       <a href="#" id="blogBtn">Blog</a>
-      <a href="#reviewSection" id="reviewBtn">Review</a>
+      <a href="#commentsSection" id="commentsBtn">Share Your Thoughts</a>
     </nav>
   </div>
 </header>
@@ -274,7 +264,6 @@
   <div class="buttons" style="text-align:center;">
     <a href="#" id="aboutBtn2" class="btn">Learn About Us</a>
     <a href="#commentsSection" class="btn">Share Your Thoughts</a>
-    <a href="#reviewSection" class="btn">Rate Us</a>
   </div>
 
   <!-- Services & Pricing -->
@@ -296,17 +285,6 @@
       <textarea rows="4" placeholder="Your comment..." id="commentInput" required></textarea>
       <button type="submit">Post Comment</button>
     </form>
-  </section>
-
-  <!-- Reviews -->
-  <section id="reviewSection" style="margin-top:50px;">
-    <h2>Rate Our Service</h2>
-    <form id="reviewForm">
-      <label for="rating">Your Rating (1-5):</label>
-      <input type="number" id="rating" min="1" max="5" required />
-      <button type="submit">Submit Review</button>
-    </form>
-    <div id="overallReview">Overall Review: N/A</div>
   </section>
 
 </div>
@@ -336,17 +314,11 @@
 <script>
   // Comments array
   const comments = [];
-  // Reviews array
-  const reviews = [];
 
   const commentsDiv = document.getElementById('comments');
   const commentForm = document.getElementById('commentsForm');
   const nameInput = document.getElementById('nameInput');
   const commentInput = document.getElementById('commentInput');
-
-  const reviewForm = document.getElementById('reviewForm');
-  const ratingInput = document.getElementById('rating');
-  const overallDiv = document.getElementById('overallReview');
 
   // About Us modal
   const aboutModal = document.getElementById('aboutModal');
@@ -374,11 +346,6 @@
     e.preventDefault();
     window.open('https://www.blogger.com', '_blank');
   });
- 
-  // "Review" button
-  document.getElementById('reviewBtn').addEventListener('click', () => {
-    document.getElementById('reviewSection').scrollIntoView({behavior: 'smooth'});
-  });
 
   // Add comment
   commentForm.addEventListener('submit', e => {
@@ -399,27 +366,6 @@
       p.innerHTML = `<strong>${c.name}:</strong> ${c.comment}`;
       commentsDiv.appendChild(p);
     });
-  }
-
-  // Submit review
-  reviewForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const rating = parseInt(ratingInput.value);
-    if (rating >= 1 && rating <= 5) {
-      reviews.push(rating);
-      updateOverallReview();
-      reviewForm.reset();
-    }
-  });
-
-  function updateOverallReview() {
-    if (reviews.length === 0) {
-      overallDiv.textContent = 'Overall Review: N/A';
-      return;
-    }
-    const sum = reviews.reduce((a, b) => a + b, 0);
-    const avg = (sum / reviews.length).toFixed(2);
-    overallDiv.textContent = `Average Rating: ${avg} / 5 (${reviews.length} reviews)`;
   }
 </script>
 </body>
